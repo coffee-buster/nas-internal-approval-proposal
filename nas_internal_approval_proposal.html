@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Small Office NAS and Printer Proposal</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #5f6878;
+      --line: #d9dee8;
+      --paper: #f6f8fb;
+      --card: #ffffff;
+      --accent: #1f5eff;
+      --accent-soft: #eaf0ff;
+      --ok: #116b4f;
+      --warn: #8a5a00;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+    }
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 36px 22px 64px;
+    }
+    header {
+      background: linear-gradient(135deg, #172033, #1f5eff);
+      color: white;
+      border-radius: 24px;
+      padding: 34px;
+      box-shadow: 0 18px 40px rgba(23, 32, 51, 0.18);
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.08;
+    }
+    header p { max-width: 850px; margin: 0; color: #e8edff; }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      font-size: 13px;
+      color: white;
+    }
+    section {
+      margin-top: 28px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 20px rgba(23, 32, 51, 0.05);
+    }
+    h2 { margin: 0 0 14px; font-size: 24px; }
+    h3 { margin: 0 0 10px; font-size: 18px; }
+    p { margin: 0 0 12px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      background: #fff;
+      min-height: 100%;
+    }
+    .card img {
+      width: 100%;
+      height: 170px;
+      object-fit: contain;
+      background: #f3f5f9;
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .tag {
+      display: inline-block;
+      margin: 0 6px 8px 0;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .tag.ok { background: #e9f7f2; color: var(--ok); }
+    .tag.warn { background: #fff5d8; color: var(--warn); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+    }
+    th { background: #eef2f8; font-weight: 700; }
+    tr:last-child td { border-bottom: 0; }
+    .price { white-space: nowrap; font-weight: 700; }
+    .note { color: var(--muted); font-size: 13px; }
+    .callout {
+      border-left: 5px solid var(--accent);
+      background: var(--accent-soft);
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin: 14px 0;
+    }
+    .decision {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    ul { margin: 10px 0 0 22px; padding: 0; }
+    @media (max-width: 820px) {
+      .grid, .grid.three, .decision { grid-template-columns: 1fr; }
+      section, header { padding: 20px; }
+      th, td { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Small Office NAS, Network, UPS, and Printer Proposal</h1>
+      <p>Internal approval proposal for a Toronto-based office of approximately 10 staff. The recommendation prioritizes reliable shared file storage, Google Drive backup/sync, graceful UPS shutdown, simple wired expansion, and a separate colour laser multifunction printer budget.</p>
+      <div class="meta">
+        <span class="pill">Prepared: May 12, 2026</span>
+        <span class="pill">Prices: CAD, pre-tax</span>
+        <span class="pill">NAS/network budget target: under $1,500</span>
+        <span class="pill">Printer: separate budget</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Executive Summary</h2>
+      <div class="decision">
+        <div>
+          <p>The recommended core setup is a Synology DS225+ with two 4TB WD Red Plus NAS drives in RAID1, a USB-capable UPS, and an unmanaged TP-Link gigabit switch. This provides a simple, supportable platform for shared company files, Google Drive synchronization/backup, and future light automation or Docker use.</p>
+          <div class="callout"><strong>Recommended approval:</strong> Proceed with the balanced NAS/network package estimated at <strong>$1,247.95 pre-tax</strong>, excluding printer and any cabling/labour.</div>
+        </div>
+        <table>
+          <tr><th>Component</th><th>Recommended Item</th><th>Confirmed Price</th></tr>
+          <tr><td>NAS</td><td>Synology DS225+</td><td class="price">$499.99</td></tr>
+          <tr><td>Drives</td><td>2 x WD Red Plus 4TB</td><td class="price">$459.98</td></tr>
+          <tr><td>UPS</td><td>CyberPower LX1500GU3-FC alternative</td><td class="price">$259.99</td></tr>
+          <tr><td>Switch</td><td>TP-Link TL-SG108</td><td class="price">$27.99</td></tr>
+          <tr><td><strong>Total</strong></td><td>Core package</td><td class="price">$1,247.95</td></tr>
+        </table>
+      </div>
+      <p class="note">Pricing marked as confirmed was accessible during research. Several retailer pages block automated pricing or require dynamic browser rendering; those entries are included as live-check links.</p>
+    </section>
+
+    <section>
+      <h2>Business Need</h2>
+      <div class="grid three">
+        <div class="card"><h3>Central File Storage</h3><p>Provide a shared local storage location for company files with user permissions and SMB access for office computers.</p></div>
+        <div class="card"><h3>Backup and Sync</h3><p>Use Synology packages to sync or back up selected data with Google Drive and support future offsite backup workflows.</p></div>
+        <div class="card"><h3>Operational Continuity</h3><p>Use RAID1 for drive redundancy and a UPS with USB communication for controlled NAS shutdown during outages.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>NAS Options</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://www.synology.com/api/products/getPhoto?product=DS225%2B&type=img&sort=1" alt="Synology DS225+ NAS">
+          <span class="tag ok">Recommended Balanced Option</span>
+          <h3>Synology DS225+</h3>
+          <p>Preferred 2-bay Synology NAS for this office. It supports RAID1, DSM apps, Google Drive workflows, and future light automation use. It also includes 1GbE and 2.5GbE network ports.</p>
+          <table>
+            <tr><th>Retailer</th><th>Price</th><th>URL</th></tr>
+            <tr><td>Canada Computers</td><td class="price">$499.99 confirmed</td><td><a href="https://www.canadacomputers.com/en/personal-home-nas/279247/synology-ds225-diskstation-2-bay-nas-diskless-ds225.html?keyword=synology%20ds225">Product page</a></td></tr>
+            <tr><td>Memory Express</td><td>Verify live</td><td><a href="https://www.memoryexpress.com/Search/Products?Search=Synology%20DS225%2B">Search link</a></td></tr>
+            <tr><td>Staples Canada</td><td>Verify live</td><td><a href="https://www.staples.ca/search?query=Synology%20DS225%2B">Search link</a></td></tr>
+            <tr><td>Best Buy Canada</td><td>Verify live</td><td><a href="https://www.bestbuy.ca/en-ca/search?search=Synology%20DS225%2B">Search link</a></td></tr>
+            <tr><td>CDW Canada</td><td>Verify live / quote</td><td><a href="https://www.cdw.ca/search/?key=Synology%20DS225%2B">Search link</a></td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <img src="https://www.synology.com/api/products/getPhoto?product=DS723%2B&type=img&sort=1" alt="Synology DS723+ NAS">
+          <span class="tag warn">Reliability / Upgrade Option</span>
+          <h3>Synology DS723+</h3>
+          <p>Higher-end 2-bay option with a stronger platform for expansion and heavier workloads. It is more expensive and less compelling if the office only needs basic file sharing and Google Drive sync.</p>
+          <table>
+            <tr><th>Retailer</th><th>Price</th><th>URL</th></tr>
+            <tr><td>Canada Computers</td><td class="price">$679.99 confirmed</td><td><a href="https://www.canadacomputers.com/en/personal-home-nas/234662/synology-ds723-diskstation-2-bay-nas-diskless-ds723.html?keyword=synology%20ds723">Product page</a></td></tr>
+            <tr><td>Memory Express</td><td>Verify live</td><td><a href="https://www.memoryexpress.com/Search/Products?Search=Synology%20DS723%2B">Search link</a></td></tr>
+            <tr><td>Staples Canada</td><td>Verify live</td><td><a href="https://www.staples.ca/search?query=Synology%20DS723%2B">Search link</a></td></tr>
+            <tr><td>Best Buy Canada</td><td>Verify live</td><td><a href="https://www.bestbuy.ca/en-ca/search?search=Synology%20DS723%2B">Search link</a></td></tr>
+            <tr><td>CDW Canada</td><td>Verify live / quote</td><td><a href="https://www.cdw.ca/search/?key=Synology%20DS723%2B">Search link</a></td></tr>
+          </table>
+        </div>
+      </div>
+      <p class="note">Synology DS224+ has been intentionally excluded from this proposal.</p>
+    </section>
+
+    <section>
+      <h2>Hard Drive Options</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://www.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-red-plus-sata-3-5-hdd/gallery/wd-red-plus-sata-3-5-hdd-2tb.png.thumb.1280.1280.png" alt="WD Red Plus NAS hard drive">
+          <span class="tag ok">Recommended Value</span>
+          <h3>WD Red Plus 4TB x 2</h3>
+          <p>NAS-rated CMR drives suitable for RAID1 in a 2-bay Synology NAS. Best current value among accessible Canadian pricing.</p>
+          <table>
+            <tr><th>Retailer</th><th>Price</th><th>URL</th></tr>
+            <tr><td>Canada Computers</td><td class="price">$229.99 each confirmed</td><td><a href="https://www.canadacomputers.com/en/desktop-internal-hard-drives/285567/wd-red-plus-4tb-nas-internal-hard-drive-wd40efzz.html?keyword=wd%20red%20plus%204tb">Product page</a></td></tr>
+            <tr><td>Memory Express</td><td>Verify live</td><td><a href="https://www.memoryexpress.com/Search/Products?Search=WD%20Red%20Plus%204TB">Search link</a></td></tr>
+            <tr><td>Staples Canada</td><td>Verify live</td><td><a href="https://www.staples.ca/search?query=WD%20Red%20Plus%204TB">Search link</a></td></tr>
+            <tr><td>Best Buy Canada</td><td>Verify live</td><td><a href="https://www.bestbuy.ca/en-ca/search?search=WD%20Red%20Plus%204TB">Search link</a></td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <img src="https://www.seagate.com/content/dam/seagate/en/products/nas-drives/ironwolf-hard-drive/_shared/images/ironwolf-3-5-hdd-hero-left.png" alt="Seagate IronWolf NAS hard drive">
+          <span class="tag warn">Reliability Alternative</span>
+          <h3>Seagate IronWolf / IronWolf Pro 4TB x 2</h3>
+          <p>Strong NAS-drive alternative. Canada Computers search returned IronWolf Pro 4TB at a significantly higher price, so it is not the value recommendation unless warranty/reliability preference outweighs cost.</p>
+          <table>
+            <tr><th>Retailer</th><th>Price</th><th>URL</th></tr>
+            <tr><td>Canada Computers</td><td class="price">$310.99 each confirmed, IronWolf Pro</td><td><a href="https://www.canadacomputers.com/en/desktop-internal-hard-drives/246553/seagate-ironwolf-pro-4-tb-hard-drive-st4000nt001.html?keyword=seagate%20ironwolf%204tb">Product page</a></td></tr>
+            <tr><td>Memory Express</td><td>Verify live</td><td><a href="https://www.memoryexpress.com/Search/Products?Search=Seagate%20IronWolf%204TB">Search link</a></td></tr>
+            <tr><td>Staples Canada</td><td>Verify live</td><td><a href="https://www.staples.ca/search?query=Seagate%20IronWolf%204TB">Search link</a></td></tr>
+            <tr><td>Best Buy Canada</td><td>Verify live</td><td><a href="https://www.bestbuy.ca/en-ca/search?search=Seagate%20IronWolf%204TB">Search link</a></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="callout"><strong>RAID recommendation:</strong> configure as RAID1 / Synology Hybrid RAID with one-drive fault tolerance. RAID reduces downtime from a single drive failure but is not a replacement for backup.</div>
+    </section>
+
+    <section>
+      <h2>UPS Options</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://www.cyberpowersystems.com/wp-content/uploads/2021/10/LX1500GU3-FC_Front.png" alt="CyberPower UPS">
+          <span class="tag ok">Recommended Available Alternative</span>
+          <h3>CyberPower LX1500GU3-FC</h3>
+          <p>Closest available Canada Computers alternative to LX1325GU. Use with NAS, modem/router, and switch. Confirm USB communication cable and DSM compatibility before purchase.</p>
+          <table>
+            <tr><th>Retailer</th><th>Price</th><th>URL</th></tr>
+            <tr><td>Canada Computers</td><td class="price">$259.99 confirmed</td><td><a href="https://www.canadacomputers.com/en/home-office-ups/252592/cyberpower-1500va-ups-battery-backup-lx1500gu3-fc-lx1500gu3-fc.html?keyword=cyberpower%20lx1325gu">Product page</a></td></tr>
+            <tr><td>Staples Canada</td><td>Verify live</td><td><a href="https://www.staples.ca/search?query=CyberPower%20LX1325GU">Search link</a></td></tr>
+            <tr><td>Best Buy Canada</td><td>Verify live</td><td><a href="https://www.bestbuy.ca/en-ca/search?search=CyberPower%20LX1325GU">Search link</a></td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <img src="https://download.schneider-electric.com/files?p_Doc_Ref=APC_BX950U_CA&p_File_Type=rendition_500_jpg" alt="APC UPS">
+          <span class="tag warn">APC Alternative</span>
+          <h3>APC BX950U-CA / APC BR1000MS</h3>
+          <p>APC is a strong reliability brand. Canada Computers returned BR1000MS as the accessible alternative. BX950U-CA should be live-checked at Staples/Best Buy before final purchase.</p>
+          <table>
+            <tr><th>Retailer</th><th>Price</th><th>URL</th></tr>
+            <tr><td>Canada Computers</td><td class="price">$265.99 confirmed, BR1000MS alternative</td><td><a href="https://www.canadacomputers.com/en/home-office-ups/120922/apc-pro-1000va-battery-backup-sinewave-ups-br1000ms-br1000ms.html?keyword=apc%20bx950u-ca">Product page</a></td></tr>
+            <tr><td>Staples Canada</td><td>Verify live</td><td><a href="https://www.staples.ca/search?query=APC%20BX950U-CA">Search link</a></td></tr>
+            <tr><td>Best Buy Canada</td><td>Verify live</td><td><a href="https://www.bestbuy.ca/en-ca/search?search=APC%20BX950U-CA">Search link</a></td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Network Switch Options</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://static.tp-link.com/TL-SG108_UN_6.0_01_large_20220923102905j.png" alt="TP-Link TL-SG108 switch">
+          <span class="tag ok">Recommended Value</span>
+          <h3>TP-Link TL-SG108</h3>
+          <p>Low-cost unmanaged 8-port gigabit switch. Appropriate if the office does not require PoE and does not need advanced VLAN management.</p>
+          <table>
+            <tr><th>Retailer</th><th>Price</th><th>URL</th></tr>
+            <tr><td>Canada Computers</td><td class="price">$27.99 confirmed</td><td><a href="https://www.canadacomputers.com/en/unmanaged-switches/58860/tp-link-tl-sg108-soho-8-port-10-100-1000mbps-desktop-switch-tl-sg108.html?keyword=tp-link%20tl-sg1010d">Product page</a></td></tr>
+            <tr><td>Memory Express</td><td>Verify live</td><td><a href="https://www.memoryexpress.com/Search/Products?Search=TP-Link%20TL-SG108">Search link</a></td></tr>
+            <tr><td>Staples Canada</td><td>Verify live</td><td><a href="https://www.staples.ca/search?query=TP-Link%20TL-SG108">Search link</a></td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <img src="https://static.tp-link.com/TL-SG1010D_UN_3.0_01_large_20230726075539r.png" alt="TP-Link TL-SG1010D switch">
+          <span class="tag">More Ports</span>
+          <h3>TP-Link TL-SG1010D</h3>
+          <p>10-port unmanaged gigabit switch. Better fit if the office expects close to 10 wired devices immediately. Live pricing should be checked before final approval.</p>
+          <table>
+            <tr><th>Retailer</th><th>Price</th><th>URL</th></tr>
+            <tr><td>Canada Computers</td><td>Search returned TL-SG108 alternative</td><td><a href="https://www.canadacomputers.com/en/search?s=TP-Link%20TL-SG1010D">Search link</a></td></tr>
+            <tr><td>Memory Express</td><td>Verify live</td><td><a href="https://www.memoryexpress.com/Search/Products?Search=TP-Link%20TL-SG1010D">Search link</a></td></tr>
+            <tr><td>Staples Canada</td><td>Verify live</td><td><a href="https://www.staples.ca/search?query=TP-Link%20TL-SG1010D">Search link</a></td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Printer Options and OEM Supplies</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://cdn-tp1.mozu.com/21830-33325/cms/33325/files/84e27b68-6939-4781-aea6-abc50f406503?max=500&_mzcb=_1778240709261" alt="Brother MFC-L3780CDW printer">
+          <span class="tag ok">Preferred Printer</span>
+          <h3>Brother MFC-L3780CDW</h3>
+          <p>Modern colour digital all-in-one with duplex printing, single-pass duplex copy/scan, Gigabit Ethernet, Wi-Fi, and 31 ppm print speed. Suitable for moderate office volume.</p>
+          <table>
+            <tr><th>Retailer</th><th>Price</th><th>URL</th></tr>
+            <tr><td>Brother Canada</td><td class="price">$679.99 sale, $779.99 list + $7.25 eco fee</td><td><a href="https://www.brother.ca/en/p/MFCL3780CDW">Product page</a></td></tr>
+            <tr><td>Staples Canada</td><td>Verify live</td><td><a href="https://www.staples.ca/search?query=Brother%20MFC-L3780CDW">Search link</a></td></tr>
+            <tr><td>Best Buy Canada</td><td>Verify live</td><td><a href="https://www.bestbuy.ca/en-ca/search?search=Brother%20MFC-L3780CDW">Search link</a></td></tr>
+            <tr><td>CDW Canada</td><td>Verify live / quote</td><td><a href="https://www.cdw.ca/search/?key=Brother%20MFC-L3780CDW">Search link</a></td></tr>
+          </table>
+          <table>
+            <tr><th>OEM Supply</th><th>Brother Canada Price</th></tr>
+            <tr><td>TN229BK/C/M/Y standard toner</td><td class="price">$105.99 each</td></tr>
+            <tr><td>TN2294PK standard 4-pack</td><td class="price">$369.99</td></tr>
+            <tr><td>TN229XLBK high-yield black</td><td class="price">$119.99</td></tr>
+            <tr><td>TN229XLC/M/Y high-yield colour</td><td class="price">$137.99 each</td></tr>
+            <tr><td>TN229XXLBK super high-yield black</td><td class="price">$154.99</td></tr>
+            <tr><td>TN229XXLC/M/Y super high-yield colour</td><td class="price">$206.99 each</td></tr>
+            <tr><td>DR229CL drum unit</td><td class="price">$219.99</td></tr>
+            <tr><td>BU229CL belt unit</td><td class="price">$199.99</td></tr>
+            <tr><td>WT229CL waste toner box</td><td>Listed, price not shown</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <img src="https://cdn-tp1.mozu.com/21830-33325/cms/33325/files/02047a8a-c4a1-4796-b4db-e003d3f82a3d?max=500&_mzcb=_1778240709261" alt="Brother MFC-L8900CDW printer">
+          <span class="tag warn">Higher-Volume Option</span>
+          <h3>Brother MFC-L8900CDW</h3>
+          <p>Business colour laser all-in-one with stronger paper handling, larger ADF, higher duty cycle, and super high-yield toner options. At current Brother sale pricing it is only slightly more than the MFC-L3780CDW.</p>
+          <table>
+            <tr><th>Retailer</th><th>Price</th><th>URL</th></tr>
+            <tr><td>Brother Canada</td><td class="price">$699.99 sale, $849.99 list + $7.25 eco fee</td><td><a href="https://www.brother.ca/en/p/MFCL8900CDW">Product page</a></td></tr>
+            <tr><td>Staples Canada</td><td>Verify live</td><td><a href="https://www.staples.ca/search?query=Brother%20MFC-L8900CDW">Search link</a></td></tr>
+            <tr><td>Best Buy Canada</td><td>Verify live</td><td><a href="https://www.bestbuy.ca/en-ca/search?search=Brother%20MFC-L8900CDW">Search link</a></td></tr>
+            <tr><td>CDW Canada</td><td>Verify live / quote</td><td><a href="https://www.cdw.ca/search/?key=Brother%20MFC-L8900CDW">Search link</a></td></tr>
+          </table>
+          <table>
+            <tr><th>OEM Supply</th><th>Brother Canada Price</th></tr>
+            <tr><td>TN436BK super high-yield black</td><td class="price">$142.99 + $0.55 eco fee</td></tr>
+            <tr><td>TN436C/M/Y super high-yield colour</td><td class="price">$274.99 each + $0.55 eco fee</td></tr>
+            <tr><td>TN433BK high-yield black</td><td class="price">$137.49 + $0.55 eco fee</td></tr>
+            <tr><td>TN433C/M/Y high-yield colour</td><td class="price">$202.99 each + $0.55 eco fee</td></tr>
+            <tr><td>TN431BK standard black</td><td class="price">$117.49 + $0.55 eco fee</td></tr>
+            <tr><td>TN431C/M/Y standard colour</td><td class="price">$124.49 each + $0.55 eco fee</td></tr>
+            <tr><td>TN4332PK high-yield black 2-pack</td><td class="price">$239.49 + $0.55 eco fee</td></tr>
+            <tr><td>TN4313PK standard colour 3-pack</td><td class="price">$324.49 + $0.55 eco fee</td></tr>
+            <tr><td>DR431CL drum unit</td><td class="price">$211.99 + $0.55 eco fee</td></tr>
+            <tr><td>BU330CL belt unit</td><td class="price">$84.99</td></tr>
+            <tr><td>WT320CL waste toner box</td><td class="price">$44.49 + $0.55 eco fee</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="callout"><strong>Printer recommendation:</strong> If the sale pricing remains close, consider MFC-L8900CDW for stronger office-duty hardware and higher-yield toner ecosystem. If space, noise, and newer model lifecycle matter more, keep MFC-L3780CDW as the preferred printer.</div>
+    </section>
+
+    <section>
+      <h2>Budget Scenarios</h2>
+      <table>
+        <tr><th>Scenario</th><th>Components</th><th>Estimated Pre-Tax Total</th><th>Comment</th></tr>
+        <tr><td>Recommended balanced core</td><td>DS225+, 2 x WD Red Plus 4TB, CyberPower LX1500GU3-FC, TP-Link TL-SG108</td><td class="price">$1,247.95</td><td>Meets under-$1,500 target.</td></tr>
+        <tr><td>Higher NAS option</td><td>DS723+, 2 x WD Red Plus 4TB, CyberPower LX1500GU3-FC, TP-Link TL-SG108</td><td class="price">$1,427.95</td><td>Still under target, with less remaining budget for cables/accessories.</td></tr>
+        <tr><td>Premium drive option</td><td>DS225+, 2 x IronWolf Pro 4TB, CyberPower LX1500GU3-FC, TP-Link TL-SG108</td><td class="price">$1,409.95</td><td>Higher drive cost; use only if IronWolf Pro warranty/features are preferred.</td></tr>
+        <tr><td>Printer separate: preferred</td><td>Brother MFC-L3780CDW</td><td class="price">$679.99 + eco fee</td><td>Separate printer budget.</td></tr>
+        <tr><td>Printer separate: higher volume</td><td>Brother MFC-L8900CDW</td><td class="price">$699.99 + eco fee</td><td>Strong value if sale price is still available.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Implementation Notes</h2>
+      <ul>
+        <li>Configure NAS with RAID1 / SHR one-drive redundancy using two matched 4TB NAS-rated drives.</li>
+        <li>Create shared folders by business function and apply user/group permissions.</li>
+        <li>Enable Synology Drive or Cloud Sync for Google Drive workflows after confirming desired direction: backup, two-way sync, or one-way archive.</li>
+        <li>Connect UPS to the NAS via USB and configure DSM safe shutdown on low battery.</li>
+        <li>Keep modem/router, switch, and NAS on battery-backed UPS outlets.</li>
+        <li>Schedule update windows and alert notifications for disk health, backup status, and UPS events.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Risks and Considerations</h2>
+      <ul>
+        <li>RAID1 protects against one drive failure but does not protect against accidental deletion, ransomware, theft, fire, or NAS failure.</li>
+        <li>A separate offsite/cloud backup policy should be approved after NAS deployment.</li>
+        <li>Retailer pricing and availability can change quickly; final procurement should re-check live pages or request a business quote.</li>
+        <li>UPS compatibility should be verified against Synology DSM compatibility or confirmed by vendor before purchase.</li>
+        <li>Third-party printer toner may reduce cost but can increase quality, reliability, and warranty-support risk; OEM supplies are recommended for business use.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Approval Request</h2>
+      <p>Approve procurement of the recommended balanced core NAS/network package up to <strong>$1,500 CAD pre-tax</strong>, excluding printer, printer supplies, installation labour, and optional cabling. Printer procurement should be approved under a separate budget after confirming whether the MFC-L3780CDW or MFC-L8900CDW is preferred.</p>
+      <p class="note">Retailers reviewed or linked: Canada Computers, Memory Express, Staples Canada, Best Buy Canada, CDW Canada, Staples Professional, Brother Canada.</p>
+    </section>
+  </main>
+</body>
+</html>
