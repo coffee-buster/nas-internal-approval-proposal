@@ -6,6 +6,18 @@ const verifiedImages = {
   brother8900: "https://cdn-tp1.mozu.com/21830-33325/cms/33325/files/02047a8a-c4a1-4796-b4db-e003d3f82a3d?max=500&_mzcb=_1778240709261"
 };
 
+const retailerSearchUrls = {
+  "Memory Express": query => `https://www.memoryexpress.com/Search/Products?Search=${encodeURIComponent(query)}`,
+  "Staples": query => `https://www.staples.ca/search?query=${encodeURIComponent(query)}`,
+  "Best Buy": query => `https://www.bestbuy.ca/en-ca/search?search=${encodeURIComponent(query)}`,
+  "CDW Canada": query => `https://www.cdw.ca/search/?key=${encodeURIComponent(query)}`,
+  "Western Digital Canada": query => `https://www.westerndigital.com/en-ca/search?q=${encodeURIComponent(query)}`
+};
+
+function searchUrl(retailer, query) {
+  return retailerSearchUrls[retailer](query);
+}
+
 const sections = [
   {
     title: "NAS",
@@ -21,8 +33,10 @@ const sections = [
         description: "Compact 2-bay Synology NAS for shared files, Google Drive sync/backup, and light future automation.",
         retailers: [
           ["Canada Computers", "$499.99", "https://www.canadacomputers.com/en/personal-home-nas/279247/synology-ds225-diskstation-2-bay-nas-diskless-ds225.html?keyword=synology%20ds225"],
-          ["Memory Express", "Not verified online", ""],
-          ["Staples / Best Buy / CDW", "Not verified online", ""]
+          ["Memory Express", "Search retailer", searchUrl("Memory Express", "Synology DS225+"), "Search"],
+          ["Staples", "Search retailer", searchUrl("Staples", "Synology DS225+"), "Search"],
+          ["Best Buy", "Search retailer", searchUrl("Best Buy", "Synology DS225+"), "Search"],
+          ["CDW Canada", "Search retailer", searchUrl("CDW Canada", "Synology DS225+"), "Search"]
         ]
       },
       {
@@ -35,8 +49,10 @@ const sections = [
         description: "More capable Synology 2-bay model. Better if heavier apps or future expansion are expected.",
         retailers: [
           ["Canada Computers", "$679.99", "https://www.canadacomputers.com/en/personal-home-nas/234662/synology-ds723-diskstation-2-bay-nas-diskless-ds723.html?keyword=synology%20ds723"],
-          ["Memory Express", "Not verified online", ""],
-          ["Staples / Best Buy / CDW", "Not verified online", ""]
+          ["Memory Express", "Search retailer", searchUrl("Memory Express", "Synology DS723+"), "Search"],
+          ["Staples", "Search retailer", searchUrl("Staples", "Synology DS723+"), "Search"],
+          ["Best Buy", "Search retailer", searchUrl("Best Buy", "Synology DS723+"), "Search"],
+          ["CDW Canada", "Search retailer", searchUrl("CDW Canada", "Synology DS723+"), "Search"]
         ]
       }
     ]
@@ -55,8 +71,10 @@ const sections = [
         description: "NAS-rated CMR drive. Canada Computers listed it at $259.99 each, but it was sold out online and in-store during verification.",
         retailers: [
           ["Canada Computers", "$259.99 each, sold out", "https://www.canadacomputers.com/en/desktop-internal-hard-drives/234391/seagate-ironwolf-4tb-hard-drive-st4000vn006.html?keyword=seagate%20ironwolf%204tb%20st4000vn006"],
-          ["Memory Express / Staples / Best Buy", "Blocked or not verified online", ""],
-          ["CDW Canada", "Not verified online", ""]
+          ["Memory Express", "Search retailer", searchUrl("Memory Express", "Seagate IronWolf 4TB ST4000VN006"), "Search"],
+          ["Staples", "Search retailer", searchUrl("Staples", "Seagate IronWolf 4TB ST4000VN006"), "Search"],
+          ["Best Buy", "Search retailer", searchUrl("Best Buy", "Seagate IronWolf 4TB ST4000VN006"), "Search"],
+          ["CDW Canada", "Search retailer", searchUrl("CDW Canada", "Seagate IronWolf 4TB ST4000VN006"), "Search"]
         ]
       },
       {
@@ -69,8 +87,10 @@ const sections = [
         description: "Higher-end NAS drive line. Better warranty class, but the price difference is significant.",
         retailers: [
           ["Canada Computers", "$310.99 each", "https://www.canadacomputers.com/en/desktop-internal-hard-drives/246553/seagate-ironwolf-pro-4-tb-hard-drive-st4000nt001.html?keyword=seagate%20ironwolf%204tb"],
-          ["Memory Express / Staples / Best Buy", "Blocked or not verified online", ""],
-          ["CDW Canada", "Not verified online", ""]
+          ["Memory Express", "Search retailer", searchUrl("Memory Express", "Seagate IronWolf Pro 4TB ST4000NT001"), "Search"],
+          ["Staples", "Search retailer", searchUrl("Staples", "Seagate IronWolf Pro 4TB ST4000NT001"), "Search"],
+          ["Best Buy", "Search retailer", searchUrl("Best Buy", "Seagate IronWolf Pro 4TB ST4000NT001"), "Search"],
+          ["CDW Canada", "Search retailer", searchUrl("CDW Canada", "Seagate IronWolf Pro 4TB ST4000NT001"), "Search"]
         ]
       },
       {
@@ -84,7 +104,9 @@ const sections = [
         retailers: [
           ["Canada Computers", "$229.99 each", "https://www.canadacomputers.com/en/desktop-internal-hard-drives/285567/wd-red-plus-4tb-nas-internal-hard-drive-wd40efzz.html?keyword=wd%20red%20plus%204tb"],
           ["Western Digital Canada", "Price not exposed in automated page", "https://www.westerndigital.com/en-ca/products/internal-drives/wd-red-plus-sata-3-5-hdd"],
-          ["Memory Express / Staples / Best Buy", "Blocked or not verified online", ""]
+          ["Memory Express", "Search retailer", searchUrl("Memory Express", "WD Red Plus 4TB WD40EFZZ"), "Search"],
+          ["Staples", "Search retailer", searchUrl("Staples", "WD Red Plus 4TB WD40EFZZ"), "Search"],
+          ["Best Buy", "Search retailer", searchUrl("Best Buy", "WD Red Plus 4TB WD40EFZZ"), "Search"]
         ]
       }
     ]
@@ -103,7 +125,8 @@ const sections = [
         description: "Closest verified alternative to the originally discussed LX1325GU. Higher VA rating gives extra runtime headroom.",
         retailers: [
           ["Canada Computers", "$259.99", "https://www.canadacomputers.com/en/home-office-ups/252592/cyberpower-1500va-ups-battery-backup-lx1500gu3-fc-lx1500gu3-fc.html?keyword=cyberpower%20lx1325gu"],
-          ["Staples / Best Buy", "Not verified online", ""]
+          ["Staples", "Search retailer", searchUrl("Staples", "CyberPower LX1500GU3-FC"), "Search"],
+          ["Best Buy", "Search retailer", searchUrl("Best Buy", "CyberPower LX1500GU3-FC"), "Search"]
         ]
       },
       {
@@ -116,7 +139,8 @@ const sections = [
         description: "Reliable APC alternative found during verification. BX950U-CA should still be checked manually if preferred.",
         retailers: [
           ["Canada Computers", "$265.99", "https://www.canadacomputers.com/en/home-office-ups/120922/apc-pro-1000va-battery-backup-sinewave-ups-br1000ms-br1000ms.html?keyword=apc%20bx950u-ca"],
-          ["Staples / Best Buy", "Not verified online", ""]
+          ["Staples", "Search retailer", searchUrl("Staples", "APC BR1000MS"), "Search"],
+          ["Best Buy", "Search retailer", searchUrl("Best Buy", "APC BR1000MS"), "Search"]
         ]
       }
     ]
@@ -135,7 +159,8 @@ const sections = [
         description: "8-port unmanaged gigabit switch. Good if eight wired ports are enough.",
         retailers: [
           ["Canada Computers", "$27.99", "https://www.canadacomputers.com/en/unmanaged-switches/58860/tp-link-tl-sg108-soho-8-port-10-100-1000mbps-desktop-switch-tl-sg108.html?keyword=tp-link%20tl-sg1010d"],
-          ["Memory Express / Staples", "Not verified online", ""]
+          ["Memory Express", "Search retailer", searchUrl("Memory Express", "TP-Link TL-SG108"), "Search"],
+          ["Staples", "Search retailer", searchUrl("Staples", "TP-Link TL-SG108"), "Search"]
         ]
       },
       {
@@ -147,8 +172,9 @@ const sections = [
         badges: ["More ports"],
         description: "10-port unmanaged gigabit switch. Better if close to 10 Ethernet connections are needed now. Price was not confirmed online.",
         retailers: [
-          ["Canada Computers", "Not confirmed", ""],
-          ["Memory Express / Staples", "Not verified online", ""]
+          ["Canada Computers", "Search retailer", "https://www.canadacomputers.com/en/search?s=tp-link%20tl-sg1010d", "Search"],
+          ["Memory Express", "Search retailer", searchUrl("Memory Express", "TP-Link TL-SG1010D"), "Search"],
+          ["Staples", "Search retailer", searchUrl("Staples", "TP-Link TL-SG1010D"), "Search"]
         ]
       }
     ]
@@ -167,7 +193,9 @@ const sections = [
         description: "Colour all-in-one with network printing, duplex printing, duplex scanning, and moderate office performance.",
         retailers: [
           ["Brother Canada", "$679.99 sale + $7.25 eco fee", "https://www.brother.ca/en/p/MFCL3780CDW"],
-          ["Staples / Best Buy / CDW", "Not verified online", ""]
+          ["Staples", "Search retailer", searchUrl("Staples", "Brother MFC-L3780CDW"), "Search"],
+          ["Best Buy", "Search retailer", searchUrl("Best Buy", "Brother MFC-L3780CDW"), "Search"],
+          ["CDW Canada", "Search retailer", searchUrl("CDW Canada", "Brother MFC-L3780CDW"), "Search"]
         ]
       },
       {
@@ -180,7 +208,9 @@ const sections = [
         description: "Stronger office model with larger ADF, higher duty cycle, and high-yield toner ecosystem.",
         retailers: [
           ["Brother Canada", "$699.99 sale + $7.25 eco fee", "https://www.brother.ca/en/p/MFCL8900CDW"],
-          ["Staples / Best Buy / CDW", "Not verified online", ""]
+          ["Staples", "Search retailer", searchUrl("Staples", "Brother MFC-L8900CDW"), "Search"],
+          ["Best Buy", "Search retailer", searchUrl("Best Buy", "Brother MFC-L8900CDW"), "Search"],
+          ["CDW Canada", "Search retailer", searchUrl("CDW Canada", "Brother MFC-L8900CDW"), "Search"]
         ]
       }
     ]
@@ -227,8 +257,8 @@ function fallbackImage(label) {
 }
 
 function retailerRows(item) {
-  return item.retailers.map(([name, price, url]) => {
-    const link = url ? `<a href="${url}" target="_blank" rel="noopener">Open</a>` : `<span class="unverified">No direct verified link</span>`;
+  return item.retailers.map(([name, price, url, linkLabel]) => {
+    const link = url ? `<a href="${url}" target="_blank" rel="noopener">${linkLabel || "Open"}</a>` : `<span class="unverified">Not available</span>`;
     return `<tr><td>${name}</td><td>${price}</td><td>${link}</td></tr>`;
   }).join("");
 }
