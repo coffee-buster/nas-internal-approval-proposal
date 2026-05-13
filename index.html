@@ -6,26 +6,30 @@
   <title>Small Office NAS Options</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="nas">
   <header class="hero">
     <div>
       <p class="eyebrow">Toronto small office setup</p>
-      <h1>NAS, network, UPS and printer options</h1>
-      <p class="intro">Choose the items below to compare estimated pre-tax pricing. Prices are in CAD and should be rechecked before purchase.</p>
+      <h1>NAS, network and UPS options</h1>
+      <p class="intro">Choose the items below to compare estimated pre-tax pricing for the core setup. Prices are in CAD and should be rechecked before purchase.</p>
+      <nav class="top-nav" aria-label="Site sections">
+        <a class="active" href="index.html">NAS / Network</a>
+        <a href="printer.html">Printer</a>
+      </nav>
     </div>
   </header>
 
   <section class="totals" aria-label="Selected totals">
     <div>
-      <span class="label">Core NAS / Network</span>
+      <span class="label">Selected NAS / Network</span>
       <strong id="coreTotal">$0.00</strong>
     </div>
-    <div>
-      <span class="label">Printer / Supplies</span>
+    <div class="hide-on-nas">
+      <span class="label">Printer</span>
       <strong id="printerTotal">$0.00</strong>
     </div>
     <div class="grand">
-      <span class="label">Combined Total</span>
+      <span class="label">Current Page Total</span>
       <strong id="grandTotal">$0.00</strong>
     </div>
   </section>
@@ -33,7 +37,7 @@
   <main class="page">
     <section class="note-card">
       <h2>Quick recommendation</h2>
-      <p>For the core setup, start with the Synology DS225+, two NAS-rated 4TB drives in RAID1, a USB-capable UPS, and a simple gigabit switch. The printer is shown separately because it has a separate budget.</p>
+      <p>For the core setup, start with the Synology DS225+, two NAS-rated 4TB drives in RAID1, a USB-capable UPS, and a simple unmanaged gigabit switch.</p>
       <p class="small">RAID1 helps if one drive fails, but it is not a full backup. A separate cloud or offsite backup should still be planned.</p>
     </section>
 
